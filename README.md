@@ -1,85 +1,85 @@
 # 🥖 Bakery Inventory System
 
-Sistema de gestión de inventario para panaderías desarrollado con Spring Boot. Permite el control eficiente de productos, ingredientes, proveedores y movimientos de inventario en tiempo real.
+Inventory management system for bakeries developed with Spring Boot. It allows efficient control of products, ingredients, suppliers, and real-time inventory movements.
 
-## 🚀 Características
+## 🚀 Features
 
-- **Gestión de Productos**: Control completo de productos de panadería (panes, pasteles, etc.)
-- **Control de Inventario**: Seguimiento en tiempo real de existencias
-- **Gestión de Proveedores**: Registro y administración de proveedores
-- **Movimientos de Inventario**: Registro de entradas y salidas
-- **Arquitectura DTO**: Uso de Data Transfer Objects para una capa de presentación limpia
-- **API RESTful**: Endpoints bien definidos para integración
-- **Validaciones**: Validación de datos en todas las operaciones
+- **Product Management**: Complete control of bakery products (breads, cakes, etc.)
+- **Inventory Control**: Real-time tracking of stock levels
+- **Supplier Management**: Registration and administration of suppliers
+- **Inventory Movements**: Recording of entries and exits
+- **DTO Architecture**: Use of Data Transfer Objects for a clean presentation layer
+- **RESTful API**: Well-defined endpoints for integration
+- **Validations**: Data validation across all operations
 
-## 🛠️ Tecnologías
+## 🛠️ Technologies
 
 - **Spring Boot** 3.x
-- **Spring Data JPA** - Para acceso a datos
-- **Spring Web** - API REST
-- **PostgreSQL** - Base de datos relacional
-- **Lombok** - Reducción de código boilerplate
-- **Maven** - Gestión de dependencias
-- **Hibernate Validator** - Validación de beans
-- **MapStruct** - Mapeo de objetos (si lo usaste)
+- **Spring Data JPA** - For data access
+- **Spring Web** - REST API
+- **PostgreSQL** - Relational database
+- **Lombok** - Reduction of boilerplate code
+- **Maven** - Dependency management
+- **Hibernate Validator** - Bean validation
+- **MapStruct** - Object mapping (if you used it)
 
-## ⚙️ Arquitectura
+## ⚙️ Architecture
 
 ```
 src/main/java/com/bakery/inventory/
-├── controller/          # Controladores REST
-├── service/             # Lógica de negocio
-├── repository/          # Acceso a datos
-├── model/              # Entidades JPA
+├── controller/          # REST Controllers
+├── service/             # Business logic
+├── repository/          # Data access
+├── model/              # JPA Entities
 ├── dto/                # Data Transfer Objects
-├── mapper/             # Mapeadores (si usaste MapStruct)
-└── exception/          # Manejo de excepciones
+├── mapper/             # Mappers (if you used MapStruct)
+└── exception/          # Exception handling
 ```
 
-## 📦 Modelo de Datos
+## 📦 Data Model
 
-### Entidades Principales:
-- **Product**: Productos de la panadería (pan, pasteles, etc.)
-- **Ingredient**: Ingredientes utilizados en los productos
-- **Supplier**: Proveedores de ingredientes
-- **Inventory**: Registro de existencias
-- **InventoryMovement**: Movimientos de entrada/salida
+### Main Entities:
+- **Product**: Bakery products (bread, cakes, etc.)
+- **Ingredient**: Ingredients used in products
+- **Supplier**: Suppliers of ingredients
+- **Inventory**: Stock records
+- **InventoryMovement**: Entry/exit movements
 
-## 🎯 Endpoints Principales
+## 🎯 Main Endpoints
 
-### Productos
+### Products
 ```
-GET    /api/products              # Listar todos los productos
-GET    /api/products/{id}         # Obtener producto por ID
-POST   /api/products              # Crear nuevo producto
-PUT    /api/products/{id}         # Actualizar producto
-DELETE /api/products/{id}         # Eliminar producto
-```
-
-### Inventario
-```
-GET    /api/inventory             # Listar inventario
-GET    /api/inventory/{id}        # Obtener item de inventario
-POST   /api/inventory/movement    # Registrar movimiento
-GET    /api/inventory/low-stock   # Productos con bajo stock
+GET    /api/products              # List all products
+GET    /api/products/{id}         # Get product by ID
+POST   /api/products              # Create new product
+PUT    /api/products/{id}         # Update product
+DELETE /api/products/{id}         # Delete product
 ```
 
-### Proveedores
+### Inventory
 ```
-GET    /api/suppliers             # Listar proveedores
-GET    /api/suppliers/{id}        # Obtener proveedor por ID
-POST   /api/suppliers             # Crear nuevo proveedor
-PUT    /api/suppliers/{id}        # Actualizar proveedor
+GET    /api/inventory             # List inventory
+GET    /api/inventory/{id}        # Get inventory item
+POST   /api/inventory/movement    # Record movement
+GET    /api/inventory/low-stock   # Low stock products
 ```
 
-## 🚀 Instalación
+### Suppliers
+```
+GET    /api/suppliers             # List suppliers
+GET    /api/suppliers/{id}        # Get supplier by ID
+POST   /api/suppliers             # Create new supplier
+PUT    /api/suppliers/{id}        # Update supplier
+```
 
-### Prerrequisitos
-- Java 17 o superior
+## 🚀 Installation
+
+### Prerequisites
+- Java 17 or higher
 - Maven 3.8+
 - PostgreSQL 12+
 
-### Variables de Entorno
+### Environment Variables
 ```env
 # Database Configuration
 DB_URL=jdbc:postgresql://localhost:5432/bakerydb
@@ -90,46 +90,46 @@ DB_PASSWORD=bakerypass
 SERVER_PORT=8080
 ```
 
-### Pasos de instalación
+### Installation Steps
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/alejandrogch7/Bakery-inventory.git
 cd Bakery-inventory
 
-# Compilar el proyecto
+# Build the project
 mvn clean package
 
-# Ejecutar la aplicación
+# Run the application
 mvn spring-boot:run
 ```
 
-## 🗃️ Configuración de Base de Datos
+## 🗃️ Database Setup
 
-1. Crear base de datos PostgreSQL:
+1. Create PostgreSQL database:
 ```sql
 CREATE DATABASE bakerydb;
 CREATE USER bakeryuser WITH PASSWORD 'bakerypass';
 GRANT ALL PRIVILEGES ON DATABASE bakerydb TO bakeryuser;
 ```
 
-2. La aplicación creará automáticamente las tablas necesarias gracias a JPA/Hibernate.
+2. The application will automatically create the necessary tables thanks to JPA/Hibernate.
 
-## 🧪 Pruebas
+## 🧪 Testing
 
 ```bash
-# Ejecutar pruebas unitarias
+# Run unit tests
 mvn test
 
-# Ejecutar pruebas de integración
+# Run integration tests
 mvn verify
 ```
 
 ## 📊 DTO Pattern Implementation
 
-El proyecto utiliza el patrón DTO para separar la capa de presentación de la capa de dominio:
+The project uses the DTO pattern to separate the presentation layer from the domain layer:
 
 ```java
-// Entidad (Model)
+// Entity (Model)
 @Entity
 public class Product {
     @Id
@@ -140,7 +140,7 @@ public class Product {
     // getters and setters...
 }
 
-// DTO para presentación
+// DTO for presentation
 public class ProductDTO {
     private Long id;
     private String name;
@@ -150,48 +150,48 @@ public class ProductDTO {
 }
 ```
 
-## 🎨 Ventajas del uso de DTOs
+## 🎨 Benefits of Using DTOs
 
-- ✅ **Seguridad**: No expone entidades directamente
-- ✅ **Flexibilidad**: Puedes personalizar la información por endpoint
-- ✅ **Rendimiento**: Solo transfieres los datos necesarios
-- ✅ **Mantenimiento**: Separación clara de responsabilidades
-- ✅ **Validación**: Control específico por operación
+- ✅ **Security**: Does not expose entities directly
+- ✅ **Flexibility**: You can customize information per endpoint
+- ✅ **Performance**: Only transfer necessary data
+- ✅ **Maintenance**: Clear separation of responsibilities
+- ✅ **Validation**: Specific control per operation
 
-## 📈 Casos de Uso
+## 📈 Use Cases
 
-### 1. Registrar nuevo producto
-1. Crear producto en `/api/products`
-2. El sistema asigna automáticamente ID y fechas
-3. Producto disponible para inventario
+### 1. Register New Product
+1. Create product in `/api/products`
+2. System automatically assigns ID and dates
+3. Product available for inventory
 
-### 2. Registrar entrada de mercancía
-1. Crear movimiento en `/api/inventory/movement`
-2. Especificar tipo: ENTRADA
-3. El sistema actualiza automáticamente el stock
+### 2. Register Incoming Goods
+1. Create movement in `/api/inventory/movement`
+2. Specify type: ENTRY
+3. System automatically updates stock
 
-### 3. Registrar venta
-1. Crear movimiento en `/api/inventory/movement`
-2. Especificar tipo: SALIDA
-3. El sistema verifica stock disponible
+### 3. Register Sale
+1. Create movement in `/api/inventory/movement`
+2. Specify type: EXIT
+3. System verifies available stock
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está libre de licencias.
+This project is under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## 👥 Autor
+## 👥 Author
 
 **AlexDev** - [@alejandrogch7](https://github.com/alejandrogch7)
 
-## 🙏 Agradecimientos
+## 🙏 Acknowledgments
 
-- Spring Boot por el framework robusto
-- Comunidad de desarrollo por las contribuciones
-- Panaderos y reposteros que inspiraron este proyecto
+- Spring Boot for the robust framework
+- Development community for contributions
+- Bakers and pastry chefs who inspired this project
 
-## 🆘 Soporte
+## 🆘 Support
 
-Para reportar problemas o sugerencias:
-1. Abre un [issue](https://github.com/alejandrogch7/Bakery-inventory/issues)
-2. Describe claramente el problema
-3. Incluye pasos para reproducirlo
+To report issues or suggestions:
+1. Open an [issue](https://github.com/alejandrogch7/Bakery-inventory/issues)
+2. Clearly describe the problem
+3. Include steps to reproduce it
